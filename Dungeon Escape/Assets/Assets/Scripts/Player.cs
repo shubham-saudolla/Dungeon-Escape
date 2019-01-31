@@ -15,10 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _raycastDistance = 0.6f;
     [SerializeField]
-    bool _grounded = false;
-    [SerializeField]
     LayerMask _groundLayer;
-    bool _resetJumpNeeded = false;
+    bool _resetJump = false;
 
     void Start()
     {
@@ -32,35 +30,41 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Movement();
+    }
+
+    void Movement()
+    {
         // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
+        _rigid.velocity = new Vector2(move, _rigid.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && _grounded == true)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+            Debug.Log("Jump");
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
-            _grounded = false;
-            _resetJumpNeeded = true;
-            StartCoroutine(ResetJumpNeededRoutine());
+            StartCoroutine(ResetJumpRoutine());
         }
+    }
 
+    bool IsGrounded()
+    {
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, _raycastDistance, _groundLayer);
-        Debug.DrawRay(transform.position, dir: Vector2.down * _raycastDistance, Color.green);
-
-        // check whether raycast has hit a collider
         if (hitInfo.collider != null)
         {
-            if (_resetJumpNeeded == false)
+            if (_resetJump == false)
             {
-                _grounded = true;
+                return true;
             }
         }
 
-        _rigid.velocity = new Vector2(move, _rigid.velocity.y);
+        return false;
     }
 
-    IEnumerator ResetJumpNeededRoutine()
+    IEnumerator ResetJumpRoutine()
     {
+        _resetJump = true;
         yield return new WaitForSeconds(0.1f);
-        _resetJumpNeeded = false;
+        _resetJump = false;
     }
 }
