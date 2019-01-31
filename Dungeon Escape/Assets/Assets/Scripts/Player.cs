@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     LayerMask _groundLayer;
     bool _resetJump = false;
+    [SerializeField]
+    float _speed = 2.5f;
 
     void Start()
     {
@@ -37,11 +39,10 @@ public class Player : MonoBehaviour
     {
         // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
-        _rigid.velocity = new Vector2(move, _rigid.velocity.y);
+        _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
-            Debug.Log("Jump");
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpRoutine());
         }
