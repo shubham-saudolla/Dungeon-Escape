@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D _rigid;
     [SerializeField]
-    float _jumpForce = 5f;
+    float _jumpForce = 5.5f;
     [SerializeField]
     float _raycastDistance = 0.9f;
     [SerializeField]
