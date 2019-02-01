@@ -43,6 +43,12 @@ public class Player : MonoBehaviour
         // to visualise the raycast
         Debug.DrawRay(transform.position, Vector2.down * _raycastDistance, Color.green);
         Movement();
+
+        // attack when left click and grounded
+        if (Input.GetMouseButtonDown(0) && IsGrounded())
+        {
+            _playerAnim.Attack();
+        }
     }
 
     void Movement()
