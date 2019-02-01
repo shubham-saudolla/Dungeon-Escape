@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _jumpForce = 5.5f;
     [SerializeField]
-    float _raycastDistance = 0.9f;
+    float _raycastDistance = 0.75f;
     [SerializeField]
     LayerMask _groundLayer;
     bool _resetJump = false;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         }
         else if (move < 0)
         {
+            // TODO: fix the sprite position when we turn left because the raycast shifts too much to the left
             Flip(!_playerfacingRight);
         }
 
