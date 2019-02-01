@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _speed = 2.5f;
     bool _playerfacingRight = true;
+    bool _playerGrounded = false;
 
     PlayerAnimation _playerAnim;
     SpriteRenderer _playerSprite;
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     {
         // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
+        _playerGrounded = IsGrounded();
 
         if (move > 0)
         {
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpRoutine());
+            _playerAnim.Jump(true);
         }
 
         _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
@@ -88,6 +91,7 @@ public class Player : MonoBehaviour
         {
             if (_resetJump == false)
             {
+                _playerAnim.Jump(false);
                 return true;
             }
         }
