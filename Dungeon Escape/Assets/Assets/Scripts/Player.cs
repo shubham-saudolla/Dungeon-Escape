@@ -13,12 +13,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     float _jumpForce = 5f;
     [SerializeField]
-    float _raycastDistance = 0.6f;
+    float _raycastDistance = 0.9f;
     [SerializeField]
     LayerMask _groundLayer;
     bool _resetJump = false;
     [SerializeField]
     float _speed = 2.5f;
+
+    PlayerAnimation _anim;
 
     void Start()
     {
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Rigidbody not found on the Player gameobject");
         }
+
+        _anim = GetComponent<PlayerAnimation>();
     }
 
     void Update()
@@ -39,17 +43,21 @@ public class Player : MonoBehaviour
     {
         // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
-        _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             _rigid.velocity = new Vector2(_rigid.velocity.x, _jumpForce);
             StartCoroutine(ResetJumpRoutine());
         }
+
+        _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
+
+        _anim.Move(move);
     }
 
     bool IsGrounded()
     {
+        Debug.DrawRay(transform.position, Vector2.down * _raycastDistance, Color.green);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, _raycastDistance, _groundLayer);
         if (hitInfo.collider != null)
         {
