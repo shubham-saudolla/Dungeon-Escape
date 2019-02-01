@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     PlayerAnimation _playerAnim;
     SpriteRenderer _playerSprite;
+    SpriteRenderer _swordArcSprite;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
 
         _playerAnim = GetComponent<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
+        _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -84,10 +86,22 @@ public class Player : MonoBehaviour
         if (faceRight == true)
         {
             _playerSprite.flipX = false;
+            _swordArcSprite.flipX = false;
+            _swordArcSprite.flipY = false;
+
+            Vector2 newPos = _swordArcSprite.transform.localPosition;
+            newPos.x = 1.0f;
+            _swordArcSprite.transform.localPosition = newPos;
         }
         else if (faceRight == false)
         {
             _playerSprite.flipX = true;
+            _swordArcSprite.flipX = true;
+            _swordArcSprite.flipY = true;
+
+            Vector2 newPos = _swordArcSprite.transform.localPosition;
+            newPos.x = -1.0f;
+            _swordArcSprite.transform.localPosition = newPos;
         }
     }
 
