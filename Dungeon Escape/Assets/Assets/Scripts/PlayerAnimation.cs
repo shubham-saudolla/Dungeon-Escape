@@ -9,26 +9,32 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    Animator _anim;
+    Animator _playerAnim;
+    Animator _swordAnim;
 
     void Start()
     {
-        _anim = GetComponentInChildren<Animator>();
-
+        _playerAnim = GetComponentInChildren<Animator>();
+        _swordAnim = transform.GetChild(1).GetComponent<Animator>();
+        if (_swordAnim == null)
+        {
+            Debug.LogError("swordAnim not found");
+        }
     }
 
     public void Move(float move)
     {
-        _anim.SetFloat("Move", Mathf.Abs(move));
+        _playerAnim.SetFloat("Move", Mathf.Abs(move));
     }
 
     public void Jump(bool isJumping)
     {
-        _anim.SetBool("Jumping", isJumping);
+        _playerAnim.SetBool("Jumping", isJumping);
     }
 
     public void Attack()
     {
-        _anim.SetTrigger("Attack");
+        _playerAnim.SetTrigger("Attack");
+        _swordAnim.SetTrigger("SwordAnimation");
     }
 }
