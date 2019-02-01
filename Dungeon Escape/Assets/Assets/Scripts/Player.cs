@@ -19,8 +19,10 @@ public class Player : MonoBehaviour
     bool _resetJump = false;
     [SerializeField]
     float _speed = 2.5f;
+    bool _playerfacingRight = true;
 
-    PlayerAnimation _anim;
+    PlayerAnimation _playerAnim;
+    SpriteRenderer _playerSprite;
 
     void Start()
     {
@@ -31,11 +33,14 @@ public class Player : MonoBehaviour
             Debug.LogError("Rigidbody not found on the Player gameobject");
         }
 
-        _anim = GetComponent<PlayerAnimation>();
+        _playerAnim = GetComponent<PlayerAnimation>();
+        _playerSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
     {
+        // to visualise the raycast
+        Debug.DrawRay(transform.position, Vector2.down * _raycastDistance, Color.green);
         Movement();
     }
 
@@ -43,6 +48,15 @@ public class Player : MonoBehaviour
     {
         // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
+
+        if (move > 0)
+        {
+            Flip(_playerfacingRight);
+        }
+        else if (move < 0)
+        {
+            Flip(!_playerfacingRight);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
@@ -52,12 +66,23 @@ public class Player : MonoBehaviour
 
         _rigid.velocity = new Vector2(move * _speed, _rigid.velocity.y);
 
-        _anim.Move(move);
+        _playerAnim.Move(move);
+    }
+
+    void Flip(bool faceRight)
+    {
+        if (faceRight == true)
+        {
+            _playerSprite.flipX = false;
+        }
+        else if (faceRight == false)
+        {
+            _playerSprite.flipX = true;
+        }
     }
 
     bool IsGrounded()
     {
-        Debug.DrawRay(transform.position, Vector2.down * _raycastDistance, Color.green);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, _raycastDistance, _groundLayer);
         if (hitInfo.collider != null)
         {
