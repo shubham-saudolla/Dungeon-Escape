@@ -17,14 +17,6 @@ public class MossGiant : Enemy
     {
         _mossGiantSprite = GetComponentInChildren<SpriteRenderer>();
         _anim = GetComponentInChildren<Animator>();
-        if (_mossGiantSprite == null)
-        {
-            Debug.LogError("Sprite renderer not found");
-        }
-        if (_anim == null)
-        {
-            Debug.LogError("Animator not found on the moss giant");
-        }
     }
 
     public override void Update()
@@ -33,20 +25,30 @@ public class MossGiant : Enemy
         {
             return;
         }
+
         Movement();
     }
 
     void Movement()
     {
-        if (transform.position == pointA.position)
+        if (_currentTarget == pointA.position)
+        {
+            _mossGiantSprite.flipX = true;
+        }
+        else
         {
             _mossGiantSprite.flipX = false;
+        }
+
+        if (transform.position == pointA.position)
+        {
             _currentTarget = pointB.position;
+            _anim.SetTrigger("Idle");
         }
         else if (transform.position == pointB.position)
         {
-            _mossGiantSprite.flipX = true;
             _currentTarget = pointA.position;
+            _anim.SetTrigger("Idle");
         }
 
         transform.position = Vector3.MoveTowards(transform.position, _currentTarget, speed * Time.deltaTime);

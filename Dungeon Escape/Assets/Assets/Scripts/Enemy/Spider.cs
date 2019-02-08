@@ -14,7 +14,7 @@ public class Spider : Enemy
 
     }
 
-    void Update()
+    public override void Update()
     {
 
     }
