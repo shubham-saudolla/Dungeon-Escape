@@ -10,14 +10,29 @@ using UnityEngine;
 public class MossGiant : Enemy
 {
     Vector3 _currentTarget;
+    SpriteRenderer _mossGiantSprite;
+    Animator _anim;
 
     void Start()
     {
-
+        _mossGiantSprite = GetComponentInChildren<SpriteRenderer>();
+        _anim = GetComponentInChildren<Animator>();
+        if (_mossGiantSprite == null)
+        {
+            Debug.LogError("Sprite renderer not found");
+        }
+        if (_anim == null)
+        {
+            Debug.LogError("Animator not found on the moss giant");
+        }
     }
 
     public override void Update()
     {
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            return;
+        }
         Movement();
     }
 
@@ -25,10 +40,12 @@ public class MossGiant : Enemy
     {
         if (transform.position == pointA.position)
         {
+            _mossGiantSprite.flipX = false;
             _currentTarget = pointB.position;
         }
         else if (transform.position == pointB.position)
         {
+            _mossGiantSprite.flipX = true;
             _currentTarget = pointA.position;
         }
 
