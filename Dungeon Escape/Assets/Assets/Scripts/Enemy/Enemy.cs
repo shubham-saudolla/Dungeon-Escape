@@ -28,7 +28,7 @@ public abstract class Enemy : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public virtual void Start()
+    private void Start()
     {
         Init();
     }
@@ -65,6 +65,6 @@ public abstract class Enemy : MonoBehaviour
             anim.SetTrigger("Idle");
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target: currentTarget, speed * Time.deltaTime);
     }
 }
