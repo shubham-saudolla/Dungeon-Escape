@@ -9,13 +9,8 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	void Start ()
-	{
-		
-	}
-	
-	void Update ()
-	{
-		
-	}
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit " + other.name);
+    }
 }
