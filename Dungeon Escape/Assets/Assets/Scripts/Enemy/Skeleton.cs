@@ -20,11 +20,14 @@ public class Skeleton : Enemy, IDamageable
 
     public void Damage()
     {
-        Debug.Log("Skeleton Damage() Health is " + Health);
-
         Health--;
 
-        if (Health < 1)
+        Debug.Log("Skeleton Damage() Health is " + Health);
+
+        anim.SetTrigger("Hit");
+        isHit = true;
+
+        if (Health <= 0)
         {
             Destroy(this.gameObject);
         }
