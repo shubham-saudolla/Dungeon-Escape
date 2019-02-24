@@ -199,12 +199,12 @@ QualitySettings:
     antiAliasing: 8
     softParticles: 0
     softVegetation: 1
-    realtimeReflectionProbes: 0
+    realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
     lodBias: 2
     maximumLODLevel: 0
-    streamingMipmapsActive: 0
+    streamingMipmapsActive: 1
     streamingMipmapsAddAllCameras: 1
     streamingMipmapsMemoryBudget: 512
     streamingMipmapsRenderersPerFrame: 512
