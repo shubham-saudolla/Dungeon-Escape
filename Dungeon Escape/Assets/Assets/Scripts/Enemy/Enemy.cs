@@ -12,7 +12,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     protected int health;
     [SerializeField]
-    protected float speed;
+    protected int speed;
     [SerializeField]
     protected int gems;
     [SerializeField]
@@ -21,8 +21,6 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 currentTarget;
     protected Animator anim;
     protected SpriteRenderer sprite;
-
-    protected bool isHit = false;
 
     public virtual void Init()
     {
@@ -67,9 +65,6 @@ public abstract class Enemy : MonoBehaviour
             anim.SetTrigger("Idle");
         }
 
-        if (isHit == false)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target: currentTarget, speed * Time.deltaTime);
-        }
+        transform.position = Vector3.MoveTowards(transform.position, target: currentTarget, speed * Time.deltaTime);
     }
 }
