@@ -13,8 +13,6 @@ public class Attack : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit: " + other.name);
-
         IDamageable hit = other.GetComponent<IDamageable>();
 
         if (hit != null)
