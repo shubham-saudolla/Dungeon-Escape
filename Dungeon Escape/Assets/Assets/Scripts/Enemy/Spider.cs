@@ -16,6 +16,11 @@ public class Spider : Enemy
         base.Init();
     }
 
+    public override void Movement()
+    {
+        // Do nothing
+    }
+
     public void Damage()
     {
 
