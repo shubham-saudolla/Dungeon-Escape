@@ -20,6 +20,11 @@ public class Spider : Enemy, IDamageable
         Health = base.health;
     }
 
+    public override void Update()
+    {
+        // Do nothing
+    }
+
     public override void Movement()
     {
         // Do nothing
