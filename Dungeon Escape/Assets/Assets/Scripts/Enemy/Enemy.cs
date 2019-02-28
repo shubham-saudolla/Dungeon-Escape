@@ -44,7 +44,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && anim.GetBool("Combat") == false)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && anim.GetBool("InCombat") == false)
         {
             return;
         }
@@ -83,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (distance > 2.0f)
         {
             isHit = false;
-            anim.SetBool("Combat", false);
+            anim.SetBool("InCombat", false);
         }
     }
 }
