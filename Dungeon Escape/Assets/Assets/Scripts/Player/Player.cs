@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     Rigidbody2D _rigid;
     [SerializeField]
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     PlayerAnimation _playerAnim;
     SpriteRenderer _playerSprite;
     SpriteRenderer _swordArcSprite;
+
+    public int Health { get; set; }
 
     void Start()
     {
@@ -125,5 +127,10 @@ public class Player : MonoBehaviour
         _resetJump = true;
         yield return new WaitForSeconds(0.1f);
         _resetJump = false;
+    }
+
+    public void Damage()
+    {
+        Debug.Log("Player damage called");
     }
 }

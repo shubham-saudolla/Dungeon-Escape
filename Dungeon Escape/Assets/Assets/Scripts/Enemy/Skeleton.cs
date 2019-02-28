@@ -24,11 +24,11 @@ public class Skeleton : Enemy, IDamageable
 
         Vector3 direction = player.transform.localPosition - transform.localPosition;
 
-        if (direction.x > 0 && anim.GetBool("InCombat") == true)
+        if (direction.x > 0 && anim.GetBool("Combat") == true)
         {
             sprite.flipX = false;
         }
-        else if (direction.x < 0 && anim.GetBool("InCombat") == true)
+        else if (direction.x < 0 && anim.GetBool("Combat") == true)
         {
             sprite.flipX = true;
         }
@@ -41,7 +41,7 @@ public class Skeleton : Enemy, IDamageable
         Health--;
         anim.SetTrigger("Hit");
         isHit = true;
-        anim.SetBool("InCombat", true);
+        anim.SetBool("Combat", true);
 
         if (Health < 1)
         {

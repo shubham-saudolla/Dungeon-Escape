@@ -29,6 +29,10 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Init()
     {
         anim = GetComponentInChildren<Animator>();
+        if (anim == null)
+        {
+            Debug.Log("No animator found on the enemy");
+        }
         sprite = GetComponentInChildren<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
@@ -40,7 +44,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && anim.GetBool("InCombat") == false)
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && anim.GetBool("Combat") == false)
         {
             return;
         }
@@ -79,7 +83,7 @@ public abstract class Enemy : MonoBehaviour
         if (distance > 2.0f)
         {
             isHit = false;
-            anim.SetBool("InCombat", false);
+            anim.SetBool("Combat", false);
         }
     }
 }
