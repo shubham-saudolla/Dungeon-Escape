@@ -44,11 +44,9 @@ public class Player : MonoBehaviour, IDamageable
 
     void Update()
     {
-        // to visualise the raycast
         Debug.DrawRay(transform.position, Vector2.down * _raycastDistance, Color.green);
         Movement();
 
-        // attack when left click and grounded
         if (Input.GetMouseButtonDown(0) && IsGrounded())
         {
             _playerAnim.Attack();
@@ -57,7 +55,6 @@ public class Player : MonoBehaviour, IDamageable
 
     void Movement()
     {
-        // horizontal input for left and right
         float move = Input.GetAxisRaw("Horizontal");
         _playerGrounded = IsGrounded();
 
