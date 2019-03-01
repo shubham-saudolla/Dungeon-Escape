@@ -13,6 +13,12 @@ public class Shop : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            UIManager.Instance.OpenShop(player.diamonds);
+        }
+
         if (other.tag == "Player")
         {
             shopPanel.SetActive(true);
