@@ -73,6 +73,11 @@ public class Shop : MonoBehaviour
 
         if (_player.diamonds >= currentItemPrice)
         {
+            if (currentSelectedItem == 2)
+            {
+                GameManager.Instance.HasKeyToCastle = true;
+            }
+
             _player.diamonds = _player.diamonds - currentItemPrice;
             UIManager.Instance.OpenShop(_player.diamonds);
             Debug.Log("Award item: " + currentSelectedItem);
