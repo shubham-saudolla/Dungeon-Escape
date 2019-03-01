@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     public Text playerGemCountText;
     public Image selectionImage;
+    public Text gemCount;
 
     public static UIManager Instance
     {
@@ -41,5 +42,10 @@ public class UIManager : MonoBehaviour
     public void UpdateShopSelection(float yPos)
     {
         selectionImage.rectTransform.anchoredPosition = new Vector2(selectionImage.rectTransform.anchoredPosition.x, yPos);
+    }
+
+    public void UpdateGemCount(int count)
+    {
+        gemCount.text = "" + count;
     }
 }
