@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class UIManager : MonoBehaviour
     public Image selectionImage;
     public Text gemCount;
     public Image[] healthBars;
+    public Image aButton;
+    public Image bButton;
+    private Color temp;
 
     public static UIManager Instance
     {
@@ -33,6 +37,11 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Update()
+    {
+        UpdateButtonAlpha();
     }
 
     public void OpenShop(int gemCount)
@@ -58,6 +67,34 @@ public class UIManager : MonoBehaviour
             {
                 healthBars[i].enabled = false;
             }
+        }
+    }
+
+    public void UpdateButtonAlpha()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("A_Button"))
+        {
+            temp = aButton.color;
+            temp.a = 1f;
+            aButton.color = temp;
+        }
+        else if (CrossPlatformInputManager.GetButtonDown("B_Button"))
+        {
+            temp = bButton.color;
+            temp.a = 1f;
+            bButton.color = temp;
+        }
+        else if (CrossPlatformInputManager.GetButtonUp("A_Button"))
+        {
+            temp = aButton.color;
+            temp.a = (float)150 / 256;
+            aButton.color = temp;
+        }
+        else if (CrossPlatformInputManager.GetButtonUp("B_Button"))
+        {
+            temp = bButton.color;
+            temp.a = (float)150 / 256;
+            bButton.color = temp;
         }
     }
 }
