@@ -30,18 +30,15 @@ public class Player : MonoBehaviour, IDamageable
 
     public int Health { get; set; }
 
+    private bool isDead = false;
+
     void Start()
     {
         _rigid = GetComponent<Rigidbody2D>();
-
-        if (_rigid == null)
-        {
-            Debug.LogError("Rigidbody not found on the Player gameobject");
-        }
-
         _playerAnim = GetComponent<PlayerAnimation>();
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Health = 4;
     }
 
     void Update()
@@ -130,7 +127,17 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Damage()
     {
-        Debug.Log("Player Damage()");
+        if (isDead)
+            return;
+
+        Health--;
+        UIManager.Instance.UpdateLives(Health);
+
+        if (Health < 1)
+        {
+            _playerAnim.Death();
+            isDead = true;
+        }
     }
 
     public void AddGems(int amount)
