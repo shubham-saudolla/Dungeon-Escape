@@ -70,6 +70,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // TODO: isolate this method in a button script
     public void UpdateButtonAlpha()
     {
         if (CrossPlatformInputManager.GetButtonDown("A_Button"))
