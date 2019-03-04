@@ -12,8 +12,6 @@ public class AdsManager : MonoBehaviour
 {
     public void ShowRewardedAd()
     {
-        Debug.Log("Showing rewarded ad");
-
         if (Advertisement.IsReady("rewardedVideo"))
         {
             var options = new ShowOptions
@@ -22,6 +20,10 @@ public class AdsManager : MonoBehaviour
             };
 
             Advertisement.Show("rewardedVideo", options);
+        }
+        else
+        {
+            Debug.Log("The advertisement isn't ready");
         }
     }
 
