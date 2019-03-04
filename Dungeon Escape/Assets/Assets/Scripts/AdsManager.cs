@@ -32,7 +32,7 @@ public class AdsManager : MonoBehaviour
         switch (result)
         {
             case ShowResult.Finished:
-                // award 100 gems to the player
+                GameManager.Instance.player.AddGems(100);
                 break;
             case ShowResult.Skipped:
                 Debug.Log("Skipped the ad");

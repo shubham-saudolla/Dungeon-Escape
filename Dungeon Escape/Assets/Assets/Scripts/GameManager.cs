@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
 
+    public Player player { get; private set; }
+
     public static GameManager Instance
     {
         get
@@ -24,5 +26,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 }
