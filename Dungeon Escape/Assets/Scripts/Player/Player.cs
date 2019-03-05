@@ -46,7 +46,7 @@ public class Player : MonoBehaviour, IDamageable
 
         hasFlameSword = false;
         hasBootsOfFlight = false;
-        _jumpForce = 5.5f;
+        _jumpForce = 7.0f;
     }
 
     void Update()
