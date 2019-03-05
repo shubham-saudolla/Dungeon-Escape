@@ -111,6 +111,7 @@ public class Shop : MonoBehaviour
 
             _player.diamonds -= currentItemPrice;
             UIManager.Instance.OpenShop(_player.diamonds);
+            UIManager.Instance.UpdateGemCount(_player.diamonds);
             shopPanel.SetActive(false);
         }
         else

@@ -163,6 +163,6 @@ public class Player : MonoBehaviour, IDamageable
     public void AwardBootsOfFlight()
     {
         hasBootsOfFlight = true;
-        _jumpForce = 10f;
+        _jumpForce = 12.0f;
     }
 }
