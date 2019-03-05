@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IDamageable
 
     Rigidbody2D _rigid;
     [SerializeField]
-    float _jumpForce = 5.5f;
+    float _jumpForce;
     [SerializeField]
     float _raycastDistance = 0.75f;
     [SerializeField]
@@ -29,6 +29,9 @@ public class Player : MonoBehaviour, IDamageable
     SpriteRenderer _playerSprite;
     SpriteRenderer _swordArcSprite;
 
+    public bool hasFlameSword;
+    public bool hasBootsOfFlight;
+
     public int Health { get; set; }
 
     private bool isDead = false;
@@ -40,6 +43,10 @@ public class Player : MonoBehaviour, IDamageable
         _playerSprite = GetComponentInChildren<SpriteRenderer>();
         _swordArcSprite = transform.GetChild(1).GetComponent<SpriteRenderer>();
         Health = 4;
+
+        hasFlameSword = false;
+        hasBootsOfFlight = false;
+        _jumpForce = 5.5f;
     }
 
     void Update()
@@ -126,12 +133,12 @@ public class Player : MonoBehaviour, IDamageable
         _resetJump = false;
     }
 
-    public void Damage()
+    public void Damage(int damagePoints)
     {
         if (isDead)
             return;
 
-        Health--;
+        Health -= damagePoints;
         UIManager.Instance.UpdateLives(Health);
 
         if (Health < 1)
@@ -146,5 +153,16 @@ public class Player : MonoBehaviour, IDamageable
         diamonds += amount;
         UIManager.Instance.UpdateGemCount(diamonds);
         UIManager.Instance.OpenShop(diamonds);
+    }
+
+    public void AwardFlameSword()
+    {
+        hasFlameSword = true;
+    }
+
+    public void AwardBootsOfFlight()
+    {
+        hasBootsOfFlight = true;
+        _jumpForce = 10f;
     }
 }

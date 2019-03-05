@@ -9,11 +9,13 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    Player _player;
     Animator _playerAnim;
     Animator _swordAnim;
 
     void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         _playerAnim = GetComponentInChildren<Animator>();
         _swordAnim = transform.GetChild(1).GetComponent<Animator>();
         if (_swordAnim == null)
@@ -35,7 +37,9 @@ public class PlayerAnimation : MonoBehaviour
     public void Attack()
     {
         _playerAnim.SetTrigger("Attack");
-        _swordAnim.SetTrigger(name: "SwordAnimation");
+
+        if (_player.hasFlameSword)
+            _swordAnim.SetTrigger(name: "SwordAnimation");
     }
 
     public void Death()

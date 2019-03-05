@@ -23,12 +23,12 @@ public class MossGiant : Enemy, IDamageable
         base.Movement();
     }
 
-    public void Damage()
+    public void Damage(int damagePoints)
     {
         if (isDead)
             return;
 
-        Health--;
+        Health -= damagePoints;
         anim.SetTrigger("Hit");
         isHit = true;
         anim.SetBool("InCombat", true);

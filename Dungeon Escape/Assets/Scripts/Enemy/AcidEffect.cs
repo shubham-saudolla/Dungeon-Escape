@@ -30,7 +30,7 @@ public class AcidEffect : MonoBehaviour
 
             if (hit != null)
             {
-                hit.Damage();
+                hit.Damage(1);
                 Destroy(this.gameObject);
             }
         }

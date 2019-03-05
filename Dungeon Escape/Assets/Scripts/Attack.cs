@@ -9,7 +9,13 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    private bool _canDamage = true;
+    Player _player;
+    bool _canDamage = true;
+
+    void Awake()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,7 +25,11 @@ public class Attack : MonoBehaviour
         {
             if (_canDamage)
             {
-                hit.Damage();
+                if (_player.hasFlameSword)
+                    hit.Damage(2);
+                else
+                    hit.Damage(1);
+
                 _canDamage = false;
                 StartCoroutine(ResetDamage());
             }

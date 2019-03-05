@@ -73,14 +73,33 @@ public class Shop : MonoBehaviour
 
         if (_player.diamonds >= currentItemPrice)
         {
-            if (currentSelectedItem == 2)
+            _player.diamonds -= currentItemPrice;
+
+            switch (currentSelectedItem)
             {
-                GameManager.Instance.HasKeyToCastle = true;
+                // flame sword
+                case 0:
+                    if (_player.hasFlameSword)
+                        return;
+                    else
+                        _player.AwardFlameSword();
+                    break;
+
+                // boots of flight
+                case 1:
+                    if (_player.hasBootsOfFlight)
+                        return;
+                    else
+                        _player.AwardBootsOfFlight();
+                    break;
+
+                // key to castle
+                case 2:
+                    GameManager.Instance.HasKeyToCastle = true;
+                    break;
             }
 
-            _player.diamonds = _player.diamonds - currentItemPrice;
             UIManager.Instance.OpenShop(_player.diamonds);
-            Debug.Log("Award item: " + currentSelectedItem);
             shopPanel.SetActive(false);
         }
         else

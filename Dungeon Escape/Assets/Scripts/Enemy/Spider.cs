@@ -30,12 +30,12 @@ public class Spider : Enemy, IDamageable
         // Do nothing
     }
 
-    public void Damage()
+    public void Damage(int damagePoints)
     {
         if (isDead)
             return;
 
-        Health--;
+        Health -= damagePoints;
 
         if (Health < 1)
         {
