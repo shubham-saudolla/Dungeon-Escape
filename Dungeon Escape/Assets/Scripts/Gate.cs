@@ -15,18 +15,10 @@ public class Gate : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Player entered the trigger");
             _player = other.GetComponent<Player>();
 
             if (GameManager.Instance.HasKeyToCastle)
-            {
-                Debug.Log("Inside the if block");
                 GameManager.Instance.CompleteGame();
-            }
-            else
-            {
-                Debug.Log("in else");
-            }
         }
     }
 }
