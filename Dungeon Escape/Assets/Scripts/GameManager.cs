@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public Player player { get; private set; }
 
+    public GameObject completedGamePanel;
+
     public static GameManager Instance
     {
         get
@@ -42,5 +44,17 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+    }
+
+    public void CompleteGame()
+    {
+        StartCoroutine(Complete());
+    }
+
+    IEnumerator Complete()
+    {
+        yield return new WaitForSeconds(2.0f);
+        completedGamePanel.SetActive(true);
+        completedGamePanel.GetComponent<Animator>().SetTrigger("Fade");
     }
 }
