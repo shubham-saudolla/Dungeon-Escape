@@ -73,14 +73,15 @@ public class Shop : MonoBehaviour
 
         if (_player.diamonds >= currentItemPrice)
         {
-            _player.diamonds -= currentItemPrice;
-
             switch (currentSelectedItem)
             {
                 // flame sword
                 case 0:
                     if (_player.hasFlameSword)
+                    {
+                        shopPanel.SetActive(false);
                         return;
+                    }
                     else
                         _player.AwardFlameSword();
                     break;
@@ -88,17 +89,27 @@ public class Shop : MonoBehaviour
                 // boots of flight
                 case 1:
                     if (_player.hasBootsOfFlight)
+                    {
+                        shopPanel.SetActive(false);
                         return;
+                    }
                     else
                         _player.AwardBootsOfFlight();
                     break;
 
                 // key to castle
                 case 2:
-                    GameManager.Instance.HasKeyToCastle = true;
+                    if (GameManager.Instance.HasKeyToCastle)
+                    {
+                        shopPanel.SetActive(false);
+                        return;
+                    }
+                    else
+                        GameManager.Instance.HasKeyToCastle = true;
                     break;
             }
 
+            _player.diamonds -= currentItemPrice;
             UIManager.Instance.OpenShop(_player.diamonds);
             shopPanel.SetActive(false);
         }
