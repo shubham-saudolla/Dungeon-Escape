@@ -657,6 +657,10 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -677,9 +681,9 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 85147c09-c61d-4ea1-91a7-19c4d4ed3a9c
+  cloudProjectId: 3f8011e6-07db-4035-b17e-fbaed19ab89d
   framebufferDepthMemorylessMode: 0
-  projectName: Dungeon Escape (1)
+  projectName: Dungeon Escape
   organizationId: joydivided13
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
