@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 public class Credits : MonoBehaviour
 {
     public GameObject creditsOptionsPanel;
-    public GameObject creditsPanel;
 
     void Start()
     {
