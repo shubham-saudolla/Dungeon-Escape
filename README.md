@@ -7,8 +7,6 @@
 
 An awesome 2D RPG.
 
-<a href="https://github.com/shubham-saudolla/media/blob/master/Dungeon-Escape/EscapeScreenshot1.png?raw=true" target="_blank"><img src="https://github.com/shubham-saudolla/media/blob/master/Dungeon-Escape/EscapeScreenshot1.png?raw=true" width = "769"/></a>
-
 <a href="https://github.com/shubham-saudolla/media/blob/master/Dungeon-Escape/EscapeScreenshot2.png?raw=true" target="_blank"><img src="https://github.com/shubham-saudolla/media/blob/master/Dungeon-Escape/EscapeScreenshot2.png?raw=true" width = "769"/></a>
 
 [![Download](https://img.shields.io/static/v1.svg?label=Download&message=Unity&style=for-the-badge&labelColor=000000&color=ff0000)](https://unity3d.com)
